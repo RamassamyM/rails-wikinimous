@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :articles_params, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize
 
   def index
     @articles = Article.all
@@ -15,11 +16,10 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(articles_params)
     if @article.save
-      redirect_to article_path(@article)
+      redirect_to articles_path
     else
       render :new
     end
-    redirect_to articles_path
   end
 
   def edit
@@ -27,8 +27,11 @@ class ArticlesController < ApplicationController
 
   def update
     @article.update(articles_params)
-    @article.save
-    redirect_to articles_path
+    if @article.save
+      redirect_to articles_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -43,6 +46,6 @@ class ArticlesController < ApplicationController
   end
 
   def articles_params
-    params.require(:article).permit(:title, :content);
+    params.require(:article).permit(:title, :content)
   end
 end

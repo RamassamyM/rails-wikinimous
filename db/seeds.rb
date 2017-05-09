@@ -10,7 +10,7 @@ require "faker"
 # TODO: Write a seed to insert 100 posts in the database
 puts "____ Creating 10 fake posts"
 
-10.times do |variable|
+10.times do |i|
   article = Article.new(
     title: Faker::Beer.name + " is the " + Faker::Superhero.name,
     content: Faker::Superhero.name + "blabla"

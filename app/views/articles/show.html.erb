@@ -1,2 +1,8 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+
+<%= Kramdown::Document.new(@article.title).to_html.html_safe %>
+<%= Kramdown::Document.new(@article.content).to_html.html_safe %>
+<%= link_to "Back", articles_path %>
+<div class="light-marged-left">
+  <%= link_to '', edit_article_path(@article), class: "fa  fa-pencil" %>
+  <%= link_to '', article_path(@article), class: "fa  fa-trash-o", method: :delete, data: { confirm: "Are you sure?" }%>
+</div>

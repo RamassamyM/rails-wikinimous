@@ -1,7 +1,13 @@
-<h1>INDEX OF ARTICLES</h1>
+<h2>INDEX OF ARTICLES</h2>
+<%= link_to "Add an article", new_article_path %>
+
 <% @articles.each do |article| %>
-  <h2><%= article.title %></h2>
-  <p><%= link_to 'open', article_path %></p>
-  <p><%= article.content %></p>
+  <div class="wiki-wrapper">
+    <p><%= link_to article.title, article_path(article) %> : <%= article.content %></p>
+    <div class="light-marged-left">
+      <%= link_to '', edit_article_path(article), class: "fa  fa-pencil" %>
+      <%= link_to '', article_path(article), class: "fa  fa-trash-o", method: :delete, data: { confirm: "Are you sure?" }%>
+    </div>
+  </div>
 <% end %>
 

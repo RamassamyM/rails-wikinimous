@@ -1,0 +1,20 @@
+<div class="wrapper-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <div class="form-group">
+          <%= form_for(article) do |f| %>
+            <%= f.label :title %>
+            <%= f.text_field :title, placeholder: "An amazing info", class: "form-control" %>
+            <%= f.label :content %>
+            <%= f.text_area :content, placeholder: "article content", class: "form-control" %>
+            <%= f.submit %>
+          <% end %>
+          <%= link_to "Back", articles_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
